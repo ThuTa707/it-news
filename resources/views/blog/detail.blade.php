@@ -9,6 +9,14 @@
             </div>
 
             <h2 class="fw-bolder">{{ $article->title }}</h2>
+
+            @isset($article->feature_image)
+                        <div class="my-3 feature-image-box">
+                            <img width="1024" height="682" src="{{ asset('storage/articles/' . $article->feature_image) }}"
+                                class="attachment-large size-large wp-post-image" alt="">
+                        </div>
+                    @endisset
+
             <div class="my-3 feature-image-box">
                 <div class="d-block d-md-flex justify-content-between align-items-center my-3">
 
@@ -32,6 +40,7 @@
                         {{ $article->created_at->format("d M Y H:i a") }}
                     </a>
                 </div>
+
 
                 <p class="text-black-50" style="white-space:pre-line">
                     {{ $article->description }}

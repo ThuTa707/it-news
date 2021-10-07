@@ -16,7 +16,7 @@
                         <i class="feather-plus-circle"></i>
                         Create Article
                     </h4>
-                    <form action="{{ route('article.store') }}" id="createArticle" method="post">
+                    <form action="{{ route('article.store') }}" id="createArticle" method="post" enctype="multipart/form-data">
                         @csrf
                     </form>
                 </div>
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-5">
             <div class="card mt-3">
                 <div class="card-body">
                     <div class="form-group mb-0">
@@ -66,9 +66,18 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-3">
+        <div class="col-12 col-lg-4">
             <div class="card mt-3">
                 <div class="card-body">
+
+                    <div class="form-group">
+                        <label for="feature_image">Picture Upload</label>
+                        <input type="file" class="form-control" name="feature_image" id="feature_image" form="createArticle">
+                        @error("feature_image")
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
                     <div class="form-group mb-0">
                         <button class="btn btn-lg btn-primary w-100" form="createArticle">Create Article</button>
                     </div>
