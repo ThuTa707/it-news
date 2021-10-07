@@ -12,6 +12,12 @@
                             <a href="{{ route('baseOnCategory',$article->category->id ) }}" rel="category tag">{{ $article->category->title }}</a>
                         </div>
 
+                        @isset($article->feature_image)
+                        <div class="my-3 feature-image-box">
+                            <img width="1024" height="682" src="{{asset('storage/articles/'.$article->feature_image)}}" class="attachment-large size-large wp-post-image" alt=""></div>
+                        @endisset
+                        
+
                         <div class="text-black-50 the-excerpt">
                             <p>{{ Str::words($article->description,50) }}</p>
                         </div>
