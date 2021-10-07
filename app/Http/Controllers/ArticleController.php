@@ -46,16 +46,23 @@ class ArticleController extends Controller
         $request->validate([
             "category" => "required|exists:categories,id",
             "title" => "required|min:5|max:200",
-            "description" => "required|min:5"
+            "description" => "required|min:5",
+            "feature_image" => "nullable|image|mimes:jpg,png|max:1000"
         ]);
-
-//                return $request;
 
 
         $article = new Article();
         $article->title = $request->title;
         $article->category_id = $request->category;
         $article->description = $request->description;
+
+        if($request->hasFile('feature_image')){
+            $dir = "public/articles/";
+            $imgName = uniqid()."feature_image.".$request->file('feature_image')->getClientOriginalExtension();
+            $request->file('feature_image')->storeAs($dir, $imgName);
+            $article->feature_image = $imgName;
+        }
+
         $article->user_id = Auth::id();
         $article->save();
 

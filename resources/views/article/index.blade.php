@@ -48,6 +48,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
+                            <th>Image</th>
                             <th>Article</th>
                             <th>Category</th>
                             <th>Owner</th>
@@ -60,6 +61,9 @@
                         @forelse($articles as $article)
                             <tr>
                                 <td >{{ $article->id }}</td>
+                                <td>
+                                    <img src="{{asset('storage/articles/'.$article->feature_image)}}" height="50" alt="">
+                                </td>
                                 <td >
                                     <span class="font-weight-bold">{{ Str::words($article->title,5) }}</span>
                                     <br>
