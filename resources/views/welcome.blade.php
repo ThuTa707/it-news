@@ -21,7 +21,7 @@
 
 
                     <div class="text-black-50 the-excerpt">
-                        <p>{{ Str::words($article->description, 50) }}</p>
+                        <p>{{$article->excerpt}}</p>
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center see-more-group">
@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-                        <a href="{{ route('detail', $article->id) }}"
+                        <a href="{{ route('detail', $article->slug) }}"
                             class="btn btn-outline-primary rounded-pill px-3">Read More</a>
                     </div>
                 </div>

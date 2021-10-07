@@ -3,17 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 
 class ArticleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+    public function test(){
+
+        $articles = Article::all();
+        foreach($articles as $article){
+            // $article->slug = Str::slug($article->title, '-');
+            $article->excerpt = Str::words($article->description, 50);
+            $article->update();
+        }
+
+    }
+
     public function index()
     {
         $articles = Article::when(isset(request()->search),function ($q){
@@ -53,8 +62,10 @@ class ArticleController extends Controller
 
         $article = new Article();
         $article->title = $request->title;
+        $article->slug = Str::slug($request->title, '-');
         $article->category_id = $request->category;
         $article->description = $request->description;
+        $article->excerpt = Str::words($request->description, 50, '...');
 
         if($request->hasFile('feature_image')){
             $dir = "public/articles/";
