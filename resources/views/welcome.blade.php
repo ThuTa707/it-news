@@ -45,7 +45,7 @@
                         </div>
 
                         <a href="{{ route('detail', $article->slug) }}"
-                            class="btn btn-outline-primary rounded-pill px-3">Read More</a>
+                            class="btn btn-outline-primary rounded-pill px-3">Read Details</a>
                     </div>
                 </div>
             </div>
